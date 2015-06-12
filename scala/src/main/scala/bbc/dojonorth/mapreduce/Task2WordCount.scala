@@ -2,6 +2,7 @@ package bbc.dojonorth.mapreduce
 
 import collection.immutable.HashMap
 import bbc.dojonorth.lyrics.{LyricData, LyricDataLoader, SongWords}
+import scalaz.Scalaz._
 
 /**
  * The HelloWorld of MapReduce
@@ -11,13 +12,12 @@ class Task2WordCount {
   import Helpers._
 
   def mapFun(songWords: SongWords): HashMap[String, Int] = {
-    ???
+    songWords.words
   }
 
   // the reduce function should combine two Maps into a single one with the counts combined for matching words
-  def reduceFun(firstMap: HashMap[String,Int], secondMap: HashMap[String,Int]): HashMap[String, Int] = {
-     // hint: replace the question marks
-    firstMap.merged(secondMap){ case ((k1,v1), (k2,v2)) => ??? }
+  def reduceFun(firstMap: Map[String,Int], secondMap: Map[String,Int]): HashMap[String, Int] = {
+    firstMap |+| secondMap
   }
 }
 
