@@ -44,7 +44,7 @@ object WordStats extends App {
       .map(differentWords.mapFun)
       .reduceLeft(differentWords.reduceFun)
 
-    ???
+    theDifferentWords 
   }
 
   def getAverageTotalWords(songsData: LyricData) = {
@@ -52,19 +52,21 @@ object WordStats extends App {
       .map(totalWords.mapFun)
       .reduceLeft(totalWords.reduceFun)
 
-    ???
+    allTheWords
   }
 
   if (args.length != 1) {
     println("Usage: WordStatistics <path to an MXM file>")
   }
   else {
+    val songcount = lyricDataLoader.load(args(0)).songs.size
+    
     val songsData1 = lyricDataLoader.load(args(0))
     val diffWords = getAverageDifferentWords(songsData1)
-    println("Average number of different words per song: " + diffWords)
+    println("Average number of different words per song: " + (diffWords / songcount) )
 
     val songsData2 = lyricDataLoader.load(args(0))
     val totalWords = getAverageTotalWords(songsData2)
-    println("Average number of words per song: " + totalWords)
+    println("Average number of words per song: " + (totalWords / songcount) )
   }
 }
