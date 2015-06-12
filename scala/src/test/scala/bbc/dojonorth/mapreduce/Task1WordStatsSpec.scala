@@ -17,11 +17,13 @@ class Task1WordStatsSpec extends FlatSpec with Matchers {
 
   "Reduce Function for different words" should "do something with 2 map results" in {
     val wc = new Task1AverageDifferentWords
-    val song = SongWords("tra123", 12345, Map("the" -> 4, "i" -> 5))
+    val song  = SongWords("tra123", 12345, Map("the" -> 4, "i" -> 5))
+    val song2 = SongWords("321art", 54321, Map("the" -> 10, "i" -> 10))
 
     val result = wc.mapFun(song)
-    //TODO: write your own test!
-    fail
+    val result2 = wc.mapFun(song2)
+    
+    wc.reduceFun(result, result2) should be (4)
   }
 
   "Map Function for total words" should "take a song and return the total number of words" in {
@@ -36,9 +38,11 @@ class Task1WordStatsSpec extends FlatSpec with Matchers {
   "Reduce Function for total words" should "do something with 2 map results" in {
     val wc = new Task1AverageTotalWords
     val song = SongWords("tra123", 12345, Map("the" -> 4, "i" -> 5))
+    val song2 = SongWords("321art", 54321, Map("the" -> 10, "i" -> 10))
 
     val result = wc.mapFun(song)
-    //TODO: write your own test!
-    fail
+    val result2 = wc.mapFun(song2)
+
+    wc.reduceFun(result, result2) should be (29)
   }
 }

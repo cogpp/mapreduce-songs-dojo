@@ -6,12 +6,12 @@ class Task1AverageDifferentWords {
 
   // should return number of distinct words in a song
   def mapFun(song: SongWords): Int = {
-    ???
+    song.words.size
   }
 
   def reduceFun(firstCount: Int, secondCount: Int): Int = {
     // hint: can we compute an average without having processed all the input?
-    ???
+    firstCount + secondCount
   }
 }
 
@@ -19,12 +19,12 @@ class Task1AverageTotalWords {
 
   // should return total number of words in a song
   def mapFun(song: SongWords): Int = {
-    ???
+    song.words.values.reduce(_ + _)
   }
 
   def reduceFun(firstCount: Int, secondCount: Int): Int = {
     // hint: can we compute an average without having processed all the input?
-    ???
+    firstCount + secondCount
   }
 }
 
